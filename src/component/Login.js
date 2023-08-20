@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+
+
+
 class Login extends Component {
   constructor() {
     super();
@@ -9,6 +12,8 @@ class Login extends Component {
       inputPw: '',
     };
   }
+
+  
 
   handleInputId = (e) => {
     this.setState({
@@ -22,6 +27,25 @@ class Login extends Component {
     });
   };
 
+  onClickDogs = async() => {
+    const authToken = localStorage.getItem('token');
+    
+    // Define your Axios instance with default headers
+    const axiosInstance = axios.create({
+      headers: {
+        'Content-Type': 'application/json', // Set the content type as needed
+        'Authorization': `Bearer ${authToken}`, // Include the token in the 'Authorization' header
+      },
+    });
+    axiosInstance.get('/user')
+    .then((response) => {
+      let data = response.data;
+      alert(data.USER_EMAIL);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  }
   onClickLogin = async () => {
     const { inputId, inputPw } = this.state;
     const data = {
@@ -64,6 +88,9 @@ class Login extends Component {
       return(
         <div>
           <h2>Already Login</h2>
+          <button type='button' onClick={this.onClickDogs}>
+              ShowDogs
+            </button>
         </div>
       );
     }

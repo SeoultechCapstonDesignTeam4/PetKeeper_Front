@@ -10,13 +10,16 @@ function BasicExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">PetKeeper</Navbar.Brand>
+        <Navbar.Brand href="/">PetKeeper</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             {isLoggedIn ? (
-              <Nav.Link href="/logout">LogOut</Nav.Link>
+              <>
+                <Nav.Link href="/logout">LogOut</Nav.Link>
+                <Nav.Link href="/login">ShowPets</Nav.Link>
+              </>
             ) : (
               <Nav.Link href="/login">LogIn</Nav.Link>
             )}
