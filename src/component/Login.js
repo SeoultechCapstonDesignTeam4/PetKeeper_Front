@@ -40,26 +40,35 @@ class Login extends Component {
 
   render() {
     const { inputId, inputPw } = this.state;
-
-    return (
-      <div>
-        <h2>Login</h2>
+    if(!localStorage.getItem('token')){
+      return (
         <div>
-          <label htmlFor='input_id'>ID : </label>
-          <input type='text' name='input_id' value={inputId} onChange={this.handleInputId} />
+          <h2>Login</h2>
+          <div>
+            <label htmlFor='input_id'>ID : </label>
+            <input type='text' name='input_id' value={inputId} onChange={this.handleInputId} />
+          </div>
+          <div>
+            <label htmlFor='input_pw'>PW : </label>
+            <input type='password' name='input_pw' value={inputPw} onChange={this.handleInputPw} />
+          </div>
+          <div>
+            <button type='button' onClick={this.onClickLogin}>
+              Login
+            </button>
+          </div>
         </div>
+      );
+    }
+    else{
+      return(
         <div>
-          <label htmlFor='input_pw'>PW : </label>
-          <input type='password' name='input_pw' value={inputPw} onChange={this.handleInputPw} />
+          <h2>Already Login</h2>
         </div>
-        <div>
-          <button type='button' onClick={this.onClickLogin}>
-            Login
-          </button>
-        </div>
-      </div>
-    );
+      );
+    }
   }
+    
 }
 
 export default Login;

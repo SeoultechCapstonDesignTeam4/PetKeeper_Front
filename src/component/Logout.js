@@ -8,14 +8,23 @@ function Logout() {
     window.location.href = '/login';
     // Redirect to the login page or any other destination
   };
+  if(localStorage.getItem('token')){
+    return (
+      <div>
+        <h2>Logout</h2>
+        <p>Are you sure you want to log out?</p>
+        <button onClick={handleLogout}>Logout</button>
+      </div>
+    );
+  }else{
+    return (
+      <div>
+        <h2>Logout</h2>
+        <p>You are not logged in.</p>
+      </div>
+    );
+  }
 
-  return (
-    <div>
-      <h2>Logout</h2>
-      <p>Are you sure you want to log out?</p>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  );
 }
 
 export default Logout;
