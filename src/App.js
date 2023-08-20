@@ -1,20 +1,20 @@
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './component/Login';
+import Logout from './component/Logout';
+import Nav from './component/Nav';
 function App() {
   return (
     <div>
-      <Login/>
-
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <h1>React App</h1>
-//     </div>
-//   );
-// }
 
 export default App;

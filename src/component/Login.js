@@ -32,6 +32,7 @@ class Login extends Component {
       const res = await axios.post('/user/login', data);
       console.log(res);
       localStorage.setItem('token', res.data.token);
+      window.location.href = '/';
     } catch (error) {
       console.error('Error logging in:', error);
     }
