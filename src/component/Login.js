@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
-
-
+import secureLocalStorage from 'react-secure-storage';
 
 class Login extends Component {
   constructor() {
@@ -12,8 +10,6 @@ class Login extends Component {
       inputPw: '',
     };
   }
-
-  
 
   handleInputId = (e) => {
     this.setState({
@@ -28,7 +24,8 @@ class Login extends Component {
   };
 
   onClickDogs = async() => {
-    const authToken = localStorage.getItem('token');
+    const authToken = secureLocalStorage.getItem('token');
+    console.log(authToken);
     
     // Define your Axios instance with default headers
     const axiosInstance = axios.create({
@@ -54,8 +51,7 @@ class Login extends Component {
     };
     try {
       const res = await axios.post('/user/login', data);
-      console.log(res);
-      localStorage.setItem('token', res.data.token);
+      secureLocalStorage.setItem('token', res.data.token);
       window.location.href = '/';
     } catch (error) {
       console.error('Error logging in:', error);
@@ -64,7 +60,7 @@ class Login extends Component {
 
   render() {
     const { inputId, inputPw } = this.state;
-    if(!localStorage.getItem('token')){
+    if(!secureLocalStorage.getItem('token')){
       return (
         <div>
           <h2>Login</h2>

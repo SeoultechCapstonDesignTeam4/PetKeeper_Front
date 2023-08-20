@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './component/Login';
 import Logout from './component/Logout';
 import Nav from './component/Nav';
-import PetList from './component/PetList';
+import UserInfo from './component/UserInfo';
 import Footer from './component/Footer';
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/petList" element={<PetList />} />
+        <Route path="/userInfo" element={<UserInfo />} />
       </Routes>
     </BrowserRouter>
     <Footer/>

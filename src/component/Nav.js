@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import secureLocalStorage from 'react-secure-storage';
 function BasicExample() {
-  const isLoggedIn = localStorage.getItem('token');
+  const isLoggedIn = secureLocalStorage.getItem('token');
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
@@ -18,7 +18,7 @@ function BasicExample() {
             {isLoggedIn ? (
               <>
                 <Nav.Link href="/logout">LogOut</Nav.Link>
-                <Nav.Link href="/login">ShowPets</Nav.Link>
+                <Nav.Link href="/userInfo">Info</Nav.Link>
               </>
             ) : (
               <Nav.Link href="/login">LogIn</Nav.Link>

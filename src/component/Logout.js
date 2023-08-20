@@ -1,14 +1,14 @@
 import React from 'react';
-
+import secureLocalStorage from 'react-secure-storage';
 function Logout() {
 
   const handleLogout = () => {
     // Clear user session or token (e.g., remove it from local storage)
-    localStorage.removeItem('token'); // Assuming you use 'token' for authentication
+    secureLocalStorage.removeItem('token'); // Assuming you use 'token' for authentication
     window.location.href = '/login';
     // Redirect to the login page or any other destination
   };
-  if(localStorage.getItem('token')){
+  if(secureLocalStorage.getItem('token')){
     return (
       <div>
         <h2>Logout</h2>
