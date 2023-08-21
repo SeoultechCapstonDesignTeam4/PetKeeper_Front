@@ -36,7 +36,7 @@ class Login extends Component {
     });
     axiosInstance.get('/user')
     .then((response) => {
-      let data = response.data;
+      const data = response.data;
       alert(data.USER_EMAIL);
     })
     .catch((error) => {
@@ -55,7 +55,7 @@ class Login extends Component {
       secureLocalStorage.setItem('token', res.data.token);
       await axios.get('/user',{headers:{'Authorization': `Bearer ${res.data.token}`}})
       .then((response) => {
-        let data = response.data;
+        const data = response.data;
         secureLocalStorage.setItem('USER_ID', data.USER_ID);
         secureLocalStorage.setItem('USER_EMAIL', data.USER_EMAIL);
         secureLocalStorage.setItem('USER_NAME', data.USER_NAME);

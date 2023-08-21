@@ -1,37 +1,7 @@
 import React from 'react';
 import secureLocalStorage from 'react-secure-storage';
-
-// const authToken = secureLocalStorage.getItem('token');
-
-const User = ({ user }) => (
-  <div>
-    <h2>User Information</h2>
-    <p>ID: {user.USER_ID}</p>
-    <p>Email: {user.USER_EMAIL}</p>
-    <p>Name: {user.USER_NAME}</p>
-    <p>Phone: {user.USER_PHONE}</p>
-    <p>Authorization: {user.USER_AUTH}</p>
-    <img src={user.USER_IMAGE} alt="User's Profile" />
-  </div>
-)
-
-const Pets = ({ user }) => (
-  <div>
-    <ul>
-      {user.p_pets && user.p_pets.length > 0 ? (
-        user.p_pets.map(pet => (
-          <li key={pet.PET_ID}>
-            <p>Pet Name: {pet.PET_NAME} {pet.PET_ID}</p>
-            <p>Pet Kind: {pet.PET_KIND}</p>
-            <img src={pet.PET_IMAGE} alt="Pet's Image" />
-          </li>
-        ))
-      ) : (
-        <p>No pets available.</p>
-      )}
-    </ul>
-  </div>
-)
+import User from './User';
+import Pets from './Pets';
 
 function UserInfo() {
   // const [userData, setUserData] = useState([]);
