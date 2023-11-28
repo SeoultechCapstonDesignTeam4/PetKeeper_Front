@@ -18,9 +18,9 @@ const PaginatedTable = () => {
         params: {
           pageNum: currentPage,
           search: searchTerm,
+          // timestamp: Date.now(), // Add a timestamp to the request
         },
       });
-      console.log(response.data);
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -40,7 +40,11 @@ const PaginatedTable = () => {
     setCurrentPage(1); // Reset page to 1 when searching
     fetchData(); // Now fetchData is accessible within this scope
   };
-
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
   // Calculate the total number of pages based on the total count and items per page
   const totalPages = Math.ceil(data.total / itemsPerPage);
   const slicedData = data.data.slice(0, itemsPerPage);
@@ -52,13 +56,16 @@ const PaginatedTable = () => {
           className="search-input"
           placeholder="Search by Email"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+            setCurrentPage(1); // Reset page to 1 when searching
+          }}
+          onKeyDown={handleKeyDown} // Call handleKeyDown on key press
         />
         <button className="search-button" onClick={handleSearch}>
           Search
         </button>
       </div>
-
       <Pagination className="pagination-container">
         {Array.from({ length: totalPages }).map((_, index) => (
           <Pagination.Item
