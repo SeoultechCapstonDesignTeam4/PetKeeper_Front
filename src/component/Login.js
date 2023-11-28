@@ -51,19 +51,29 @@ class Login extends Component {
       USER_PASSWORD: inputPw,
     };
     try {
-      const res = await axios.post('/user/login', data);
-      secureLocalStorage.setItem('token', res.data.token);
-      await axios.get('/user',{headers:{'Authorization': `Bearer ${res.data.token}`}})
-      .then((response) => {
+      await axios.post('/user/login', data).then((response) => {
         const data = response.data;
-        secureLocalStorage.setItem('USER_ID', data.USER_ID);
-        secureLocalStorage.setItem('USER_EMAIL', data.USER_EMAIL);
-        secureLocalStorage.setItem('USER_NAME', data.USER_NAME);
-        secureLocalStorage.setItem('USER_PHONE', data.USER_PHONE);
-        secureLocalStorage.setItem('USER_AUTH', data.USER_AUTH);
-        secureLocalStorage.setItem('USER_IMAGE', data.USER_IMAGE);
-        secureLocalStorage.setItem('p_pets', JSON.stringify(data.p_pets));
-      })
+        secureLocalStorage.setItem('token', data.token);
+        secureLocalStorage.setItem('USER_ID', data.USER.USER_ID);
+        secureLocalStorage.setItem('USER_EMAIL', data.USER.USER_EMAIL);
+        secureLocalStorage.setItem('USER_NAME', data.USER.USER_NAME);
+        secureLocalStorage.setItem('USER_PHONE', data.USER.USER_PHONE);
+        secureLocalStorage.setItem('USER_AUTH', data.USER.USER_AUTH);
+        secureLocalStorage.setItem('USER_IMAGE', data.USER.USER_IMAGE);
+        secureLocalStorage.setItem('p_pets', JSON.stringify(data.USER.p_pets));
+      });
+      
+      // await axios.get(`/user/{}`,{headers:{'Authorization': `Bearer ${res.data.token}`}})
+      // .then((response) => {
+      //   const data = response.data;
+      //   secureLocalStorage.setItem('USER_ID', data.USER_ID);
+      //   secureLocalStorage.setItem('USER_EMAIL', data.USER_EMAIL);
+      //   secureLocalStorage.setItem('USER_NAME', data.USER_NAME);
+      //   secureLocalStorage.setItem('USER_PHONE', data.USER_PHONE);
+      //   secureLocalStorage.setItem('USER_AUTH', data.USER_AUTH);
+      //   secureLocalStorage.setItem('USER_IMAGE', data.USER_IMAGE);
+      //   secureLocalStorage.setItem('p_pets', JSON.stringify(data.p_pets));
+      // })
       window.location.href = '/';
     } catch (error) {
       console.error('Error logging in:', error);
