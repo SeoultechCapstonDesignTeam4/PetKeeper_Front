@@ -6,7 +6,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import secureLocalStorage from 'react-secure-storage';
 function BasicExample() {
   const isLoggedIn = secureLocalStorage.getItem('token');
-
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -14,16 +13,16 @@ function BasicExample() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
             {isLoggedIn ? (
               <>
                 <Nav.Link href="/logout">LogOut</Nav.Link>
                 <Nav.Link href="/userInfo">Info</Nav.Link>
+                <Nav.Link href="/userList">userList</Nav.Link>
               </>
             ) : (
               <Nav.Link href="/login">LogIn</Nav.Link>
             )}
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -33,7 +32,7 @@ function BasicExample() {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>
